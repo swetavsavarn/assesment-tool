@@ -1,0 +1,38 @@
+'use client';
+
+import { isChromeDesktop } from '@/utils';
+import React, { useEffect, useState } from 'react';
+
+
+
+const UserLayout = ({ children }) => {
+    const [isUnsupported, setIsUnsupported] = useState(false);
+
+    useEffect(() => {
+        if (!isChromeDesktop()) {
+            setIsUnsupported(true); // Set state to show the unsupported browser screen
+        }
+    }, []);
+
+    if (isUnsupported) {
+        return (
+            <div className="flex items-center justify-center min-h-screen bg-primary-300 px-4">
+                <div className="text-center">
+                    <h1 className="text-4xl font-bold text-blue-400">
+                        Unsupported Browser
+                    </h1>
+                    <p className="text-lg mt-4 text-gray-200">
+                        This application works only on Chrome Desktop.
+                    </p>
+                    <p className="text-md mt-2 text-white">
+                        Please switch to a desktop device and use Google Chrome for the best experience.
+                    </p>
+                </div>
+            </div>
+        );
+    }
+
+    return <>{children}</>;
+};
+
+export default UserLayout;

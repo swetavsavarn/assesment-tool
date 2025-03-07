@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  /* font-family: Arial, Helvetica, sans-serif; */
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #334151 #0f172a;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 20px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #334151;
+  border-radius: 23px;
+  border: 3px none #214497;
+}
+
+.custom-scroll {
+  flex: 1;
+  border: 1px solid #334151; /* Replace with your desired color */
+  border-radius: 8px;
+  padding: 16px;
+  color: white;
+  /* max-height: calc(100vh - 230px); */
+  overflow-y: scroll; /* Always show the scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar if not needed */
+  scrollbar-width: thin; /* For Firefox - makes the scrollbar always visible */
+  scrollbar-color: #888 #f0f0f0; /* For Firefox - thumb and track colors */
+}
+
+/* For WebKit Browsers (Chrome, Edge, Safari) */
+.custom-scroll::-webkit-scrollbar {
+  width: 8px; /* Always show scrollbar width */
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Track color */
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #888; /* Thumb color */
+  border-radius: 4px; /* Rounded corners */
+  border: 2px solid transparent; /* Optional for spacing */
+}
+
+/* To avoid hover-only behavior */
+.custom-scroll:hover::-webkit-scrollbar-thumb {
+  background-color: #555; /* Hover effect if needed */
+}
+
+/* Hide the MUI X license warning */
+[data-mui-internal-clone-marker] {
+  display: none !important;
+}
