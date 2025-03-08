@@ -175,7 +175,7 @@ const DashboardStats = () => {
 
 
                         {stat?.value > 0 ? <Link
-                            className="text-[#93C5FD] hover:text-[#60A5FA] underline font-medium text-[14px] text-lg mt-2 text-center break-words"
+                            className="text-[#93C5FD] hover:text-[#60A5FA] underline font-medium text-[14px] text-lg mt-2 text-center whitespace-nowrap"
                             href={stat.link}
                         >
                             {stat.description}
