@@ -82,6 +82,7 @@ const AddEditSkillDialog = ({
               marginBottom: 2, // Add space between input and button
               "& .MuiInputBase-root": {
                 width: "100%", // Ensure the input is 100% width
+                borderRadius: "25px",
               },
             }}
           />
