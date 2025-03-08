@@ -28,7 +28,7 @@ const PanelLayout = ({ children, pageTitle, breadcrumbsData }) => {
                     paddingLeft: isSidebarOpen ? "270px" : "90px"
                 }}
             >
-                <div className="flex w-full flex-wrap items-start gap-y-4 border-b-[0.5px] border-primary-400 bg-primary-300 text-white px-[32px] py-[12px]">
+                <div className="sticky top-0 z-20 flex w-full flex-wrap items-start gap-y-4 border-b-[0.5px] border-primary-400 bg-primary-300 text-white px-[32px] py-[12px]">
                     <div className="relative">
                         <div
                             className={`fixed left-0 top-0 z-10 h-full  transition-all duration-300 ease-in-out md:block `}
