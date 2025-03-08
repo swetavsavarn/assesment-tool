@@ -39,6 +39,7 @@ const ProfileDropdown = () => {
                         width: 45,
                         height: 45,
                         background: "#1e293b",
+                        color: "#D1D5DB",
                     }}
                 >A</Avatar>
 
@@ -46,7 +47,7 @@ const ProfileDropdown = () => {
                 <Typography
                     variant="body1"
                     sx={{
-                        color: "white",
+                        color: "#D1D5DB",
                         fontWeight: 500,
                         fontSize: "16px",
                     }}

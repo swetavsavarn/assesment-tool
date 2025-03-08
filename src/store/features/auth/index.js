@@ -5,7 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: null,
   authToken: "",
-  isSidebarOpen: false
+  isSidebarOpen: true
 };
 
 const authSlice = createSlice({

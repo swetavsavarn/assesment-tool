@@ -24,7 +24,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                     <li key={val?.label} className="w-full flex justify-center">
                         <Link
                             href={val.route}
-                            className={`group w-full justify-center flex-col nav-link flex items-center px-3 py-2 gap-y-[1px] transition duration-[0.4s] hover:bg-primary-300 ${isActive(val.routeName) ? 'bg-primary-300' : ''
+                            className={`group w-full justify-center flex-col nav-link flex items-center px-3 py-2 gap-y-[1px] transition duration-[0.4s] hover:bg-[#3B82F6] ${isActive(val.routeName) ? 'bg-primary-500 ' : ''
                                 }`}
                         >
                             {val.Icon}

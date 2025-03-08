@@ -19,14 +19,14 @@ const DashboardStats = () => {
 
     // Function to determine the color based on the completion rate
     const getCompletionRateColor = (rate) => {
-        if (rate >= 70) return "text-green-500"; // Green
+        if (rate >= 70) return "text-[#22C55E]"; // Green
         if (rate >= 50) return "text-orange-500"; // Orange
         return "text-red-500"; // Red
     };
 
     // Function to determine the color based on the completion rate
     const getRatingColor = (rate) => {
-        if (rate >= 4) return "text-green-500"; // Green
+        if (rate >= 4) return "text-[#22C55E]"; // Green
         if (rate >= 3) return "text-orange-500"; // Orange
         return "text-red-500"; // Red
     };
@@ -103,7 +103,7 @@ const DashboardStats = () => {
                 if (stat?.title == "Performance Rating") {
                     return <div
                         key={index}
-                        className="bg-[#1E293B] rounded-lg shadow-lg p-5 flex flex-col justify-between gap-y-0 max-h-[225px]"
+                        className="bg-[#1A2533] rounded-lg shadow-lg p-5 flex flex-col justify-between gap-y-0 max-h-[250px]"
                     >
                         <h2 className="text-white text-left text-[18px] font-medium leading-[27px]">
                             {stat.title}
@@ -149,7 +149,7 @@ const DashboardStats = () => {
                 return (
                     <div
                         key={index}
-                        className="bg-[#1E293B] rounded-lg shadow-lg p-5 flex flex-col justify-between gap-y-3 max-h-[225px]"
+                        className="bg-[#1A2533] rounded-lg shadow-lg p-5 flex flex-col justify-between gap-y-3 max-h-[250px]"
                     >
                         <h2 className="text-white text-left text-[18px] font-medium leading-[27px]">
                             {stat.title}
@@ -175,7 +175,7 @@ const DashboardStats = () => {
 
 
                         {stat?.value > 0 ? <Link
-                            className="text-[#93C5FD] underline font-medium text-[14px] text-lg mt-2 text-center whitespace-nowrap"
+                            className="text-[#93C5FD] hover:text-[#60A5FA] underline font-medium text-[14px] text-lg mt-2 text-center break-words"
                             href={stat.link}
                         >
                             {stat.description}

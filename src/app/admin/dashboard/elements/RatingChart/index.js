@@ -56,7 +56,7 @@ const RatingChart = () => {
         },
         chart: {
             type: 'bar',
-            background: '#1E293B',
+            background: '#1A2533',
             toolbar: {
                 show: false,
             },
@@ -134,7 +134,7 @@ const RatingChart = () => {
 
 
     return (
-        <div className="bg-[#1E293B]  rounded-lg shadow-lg p-5 flex flex-col justify-between gap-y-3 max-h-[225px] overflow-hidden">
+        <div className="bg-[#1A2533]  rounded-lg shadow-lg p-5 flex flex-col justify-between gap-y-3 max-h-[225px] overflow-hidden">
             <h2 className="text-white text-left text-[18px] font-medium leading-[27px]">
                 Rating Distribution
             </h2>
