@@ -19,12 +19,12 @@ const SkillCard = ({ id, title, levels, onEdit, onDelete, selected, showOptions 
 
     return (
         <div
-            className={`bg-primary-300 text-white min-h-[100px] rounded-md p-4 
-                 transition-transform duration-200 hover:shadow-lg border border-primary-400 ${checkboxSelection ? "hover:scale-105 cursor-pointer" : ""}`}
+            className={`bg-primary-300 text-white min-h-[100px] rounded-md p-4 transition-transform duration-200 hover:shadow-lg border border-primary-400 ${checkboxSelection ? "hover:scale-105 cursor-pointer" : ""}`}
             onClick={() => onClick(id)}
+            style={{ height: '230px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
         >
-            <div className="flex mb-4 justify-between items-start">
-                <h2 className="text-blue-400 text-xl font-semibold text-left break-all">{title}</h2>
+            <div className="flex mb-4 justify-between items-center">
+                <h2 className="text-blue-400 text-xl font-bold text-center break-words flex-1 flex justify-center items-center ">{title}</h2>
                 {!checkboxSelection && <IconButton
                     aria-controls="skill-card-menu"
                     aria-haspopup="true"
@@ -104,8 +104,8 @@ const SkillCard = ({ id, title, levels, onEdit, onDelete, selected, showOptions 
                     <Link
                         href={checkboxSelection ? "" : `/admin/manage-questions?skill=${id}&experience=${level?.levelId}`}
                         key={index}
-                        className={`${checkboxSelection ? "cursor-default" : "hover:text-blue-400 hover:scale-105 "} text-white text-sm p-2 
-                       rounded-md duration-200 cursor-pointer bg-primary-200 border border-primary-400`}
+                        className={`${checkboxSelection ? "cursor-default" : "hover:text-blue-400 hover:scale-105 "} text-white text-sm p-2 text-center
+                       rounded-md duration-200 cursor-pointer bg-primary-200 border border-primary-400 `}
                         onClick={(e) => {
                             if (checkboxSelection) {
                                 e.preventDefault(); // Prevent navigation

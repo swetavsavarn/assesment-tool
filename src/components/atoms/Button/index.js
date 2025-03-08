@@ -4,7 +4,7 @@ import { styled } from "@mui/system";
 
 // Styled Button for Primary Variant
 const PrimaryButton = styled(MuiButton)(({ theme }) => ({
-    backgroundColor: "#7DD3FC", // Light blue background color
+    backgroundColor: "#1a88ff", // Light blue background color
     color: "black", // Text color
     fontWeight: "bold", // Bold text
     borderRadius: "50px", // Fully rounded corners

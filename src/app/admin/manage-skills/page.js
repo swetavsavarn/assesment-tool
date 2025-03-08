@@ -150,7 +150,7 @@ const ManageSkills = () => {
             {/* Add Skill Button */}
             <div className="flex justify-end mr-4">
                 {/* <h3 className="text-blue-400">Add new skill</h3> */}
-                <Button variant="primary" size="small" onClick={() => handleOpenDialog()}>
+                <Button variant="primary" size="medium" onClick={() => handleOpenDialog()}>
                     Add new skill
                 </Button>
             </div>
