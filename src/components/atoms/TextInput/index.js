@@ -52,7 +52,8 @@ const CustomInput = ({
                     },
                     '& .MuiOutlinedInput-root': {
                         '& fieldset': {
-                            borderColor: '#3A3F4B', // Lighter border color
+                            borderColor: "whitesmoke", // Lighter border color
+                            borderRadius: '30px',
                         },
                     },
                 }}
