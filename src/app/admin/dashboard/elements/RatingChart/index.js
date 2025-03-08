@@ -135,7 +135,7 @@ const RatingChart = () => {
 
     return (
         <div className="bg-[#1A2533]  rounded-lg shadow-lg p-5 flex flex-col justify-between gap-y-3 max-h-[225px] overflow-hidden">
-            <h2 className="text-white text-left text-[18px] font-medium leading-[27px]">
+            <h2 className="text-white text-center text-[18px] font-medium leading-[27px]">
                 Rating Distribution
             </h2>
             <Chart options={options} series={series} type="bar" height={150} />
