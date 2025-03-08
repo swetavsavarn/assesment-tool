@@ -22,19 +22,18 @@ const LoginPage = () => {
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#0f172a]">
-            <div className="text-center mb-10">
+            <div className="text-center mb-11">
                 <img
                     src="../logo.svg" // Replace with your logo URL
                     alt="Logo"
                     className="mx-auto"
                 />
-                <h1 className="text-2xl font-semibold text-gray-100 mt-4">
+                <h1 className="text-2xl font-bold text-gray-100 mt-5">
                     Welcome to
                 </h1>
-                <p className="text-gray-400">Zestful Empowering Utilization System</p>
+                <p className="text-gray-400 ">Zestful Empowering Utilization System</p>
             </div>
-            <div className="w-full max-w-md p-8 bg-[#1e293b] rounded-lg shadow-lg">
-
+            <div className="w-full max-w-md p-8 bg-[#1B1E28] rounded-lg shadow-lg rounded-[12px] shadow-[rgba(0, 0, 0, 0.2) 0px 4px 12px]">
                 <h2 className="text-xl font-bold text-gray-100 mb-6 text-center" id="login">Login</h2>
                 <LoginForm />
             </div>

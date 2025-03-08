@@ -50,18 +50,30 @@ const CustomInput = ({
                         WebkitTextFillColor: 'white', // Text color
                         transition: 'background-color 5000s ease-in-out 0s', // Avoid flickering
                     },
+                    '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                            borderColor: '#3A3F4B', // Lighter border color
+                        },
+                    },
                 }}
                 InputLabelProps={{
                     shrink: shrinkLabel, // Force label to shrink
                 }}
                 InputProps={{
                     endAdornment: inputType === 'password' && (
-                        <InputAdornment position="end">
+                        <InputAdornment position="end" sx={{ marginRight: '8px' }}>
                             <IconButton onClick={handleTogglePasswordVisibility} edge="end">
                                 {showPassword ? <VisibilityOff /> : <Visibility />}
                             </IconButton>
                         </InputAdornment>
                     ),
+                     classes: {
+                        input: {
+                            '&::placeholder': {
+                                color: '#B0B3B8', // Lighter placeholder color
+                            },
+                        },
+                    },
                 }}
                 placeholder={placeholder}
             />

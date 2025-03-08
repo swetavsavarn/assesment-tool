@@ -126,8 +126,9 @@ const LoginForm = () => {
                         mt: 3,
                         float: 'right',
                         borderRadius: 8,
-                        backgroundColor: '#7DD3FC',
-                        color: 'black'
+                        backgroundColor: '#5A9BFF',
+                        color: 'black',
+                        padding: '12px 24px',
                     }}
                     startIcon={
                         formik.isSubmitting ? <CircularProgress size="1rem" /> : null
