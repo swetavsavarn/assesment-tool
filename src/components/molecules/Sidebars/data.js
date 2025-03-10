@@ -17,7 +17,7 @@ export const sideBarData = [
         route: "/admin/manage-skills",
         Icon: <CategoryIcon />,
         label: "Skills",
-        fullLabel: "Manage Skills",
+        fullLabel: "Skills",
         isDisabled: true,
         routeName: ["/admin/manage-skills", "/admin/manage-questions"]
     },
@@ -34,7 +34,7 @@ export const sideBarData = [
         // Icon: <FeedIcon />,
         Icon: <QuizIcon />,
         label: "Tests",
-        fullLabel: "Manage Tests",
+        fullLabel: "Tests",
         isDisabled: true,
         routeName: ["/admin/manage-tests"]
     },
@@ -43,7 +43,7 @@ export const sideBarData = [
         // Icon: <FeedIcon />,
         Icon: <FeedIcon />,
         label: "Templates",
-        fullLabel: "Manage Test Templates",
+        fullLabel: "Test Templates",
         isDisabled: true,
         routeName: ["/admin/manage-templates"]
     },

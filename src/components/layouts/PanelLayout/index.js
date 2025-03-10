@@ -25,7 +25,7 @@ const PanelLayout = ({ children, pageTitle, breadcrumbsData }) => {
         <div className="main-container">
             <div className={`relative left-0 top-0 block md:pl-[90px] duration-300 transition-all`}
                 style={{
-                    paddingLeft: isSidebarOpen ? "270px" : "90px"
+                    paddingLeft: isSidebarOpen ? "210px" : "90px"
                 }}
             >
                 <div className="sticky top-0 z-20 flex w-full flex-wrap items-start gap-y-4 border-b-[0.5px] border-primary-400 bg-primary-300 text-white px-[32px] py-[12px]">
@@ -33,14 +33,14 @@ const PanelLayout = ({ children, pageTitle, breadcrumbsData }) => {
                         <div
                             className={`fixed left-0 top-0 z-10 h-full  transition-all duration-300 ease-in-out md:block `}
                             style={{
-                                width: isSidebarOpen ? "270px" : "90px"
+                                width: isSidebarOpen ? "210px" : "90px"
                             }}
                         >
                             <button
                                 onClick={toggleSidebar}
                                 className="absolute flex justify-center items-center h-[22px] w-[22px] bg-[#334155] transition-all duration-300 ease-in-out  rounded-full top-[24px] opacity-70"
                                 style={{
-                                    left: isSidebarOpen ? "258px" : "78px", // Smoothly moves during transition
+                                    left: isSidebarOpen ? "195px" : "78px", // Smoothly moves during transition
                                 }}
                             >
                                 <KeyboardArrowRightIcon
