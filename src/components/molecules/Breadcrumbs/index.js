@@ -10,14 +10,14 @@ const BreadCrumbs = ({ pageTitle, breadcrumbsData = [] }) => {
                 {breadcrumbsData?.map((breadcrumb, index) => {
                     const isLast = index === breadcrumbsData.length - 1;
                     return isLast ? (
-                        <h3 key={index} className="text-white font-medium">
+                        <h3 key={index} className="text-newCodes-breadcrumb font-medium">
                             {breadcrumb.label}
                         </h3>
                     ) : (
                         <Link
                             key={index}
                             href={breadcrumb.href}
-                            className="text-white underline"
+                            className="text-newCodes-breadcrumb underline"
                         >
                             {breadcrumb.label}
                         </Link>

@@ -96,14 +96,14 @@ const DashboardStats = () => {
     ];
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-6 bg-newCodes-background">
             <RatingChart />
             {stats.map((stat, index) => {
 
                 if (stat?.title == "Performance Rating") {
                     return <div
                         key={index}
-                        className="bg-[#1A2533] rounded-lg shadow-lg p-5 flex flex-col justify-between gap-y-0 max-h-[250px]"
+                        className="bg-newCodes-foreground rounded-lg shadow-lg p-5 flex flex-col justify-between gap-y-0 max-h-[250px]"
                     >
                         <h2 className="text-white text-center text-[18px] font-medium leading-[27px]">
                             {stat.title}
@@ -149,7 +149,7 @@ const DashboardStats = () => {
                 return (
                     <div
                         key={index}
-                        className="bg-[#1A2533] rounded-lg shadow-lg p-5 flex flex-col justify-between gap-y-3 max-h-[250px]"
+                        className="bg-newCodes-foreground rounded-lg shadow-lg p-5 flex flex-col justify-between gap-y-3 max-h-[250px]"
                     >
                         <h2 className="text-white text-center text-[18px] font-medium leading-[27px]">
                             {stat.title}

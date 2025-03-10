@@ -16,6 +16,7 @@ module.exports = {
           sideLinksActive:'#fff',
           background:"#1d2126",
           foreground:"#272c33",
+          breadcrumb:'rgba(242, 249, 255, .7)',
         },
         primary: {
           100: "#1E293B",
