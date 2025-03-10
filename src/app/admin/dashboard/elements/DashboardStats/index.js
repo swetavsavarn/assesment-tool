@@ -40,7 +40,7 @@ const DashboardStats = () => {
             color: getRatingColor(dashboardData.feedBackData?.avgRating)
         },
         {
-            title: "Test Completion Rate",
+            title: "Assessment Completion Rate",
             value: completionRate, // Use the dynamic value
             description: "Started vs completed tests",
             link: "/admin/manage-tests",
@@ -119,7 +119,7 @@ const DashboardStats = () => {
                                     duration={2.5}
                                     separator=","
                                     decimals={
-                                        ["Test Completion Rate", "Performance Rating"].includes(stat.title) &&
+                                        ["Assessment Completion Rate", "Performance Rating"].includes(stat.title) &&
                                             !Number.isInteger(parseFloat(stat.value)) // Check if the parsed value is not an integer
                                             ? 1
                                             : 0
@@ -129,7 +129,7 @@ const DashboardStats = () => {
                             {/* <div className="justify-center"> */}
                             <ReactStars classNames="w-full flex justify-center" value={stat?.value} readonly={true} isHalf={true} size={30} edit={false} activeColor={"#FFB800"} />
                             {/* </div> */}
-                            {["Test Completion Rate"].includes(stat.title) && "%"}
+                            {["Assessment Completion Rate"].includes(stat.title) && "%"}
                         </p>
 
 
@@ -164,13 +164,13 @@ const DashboardStats = () => {
                                 duration={2.5}
                                 separator=","
                                 decimals={
-                                    ["Test Completion Rate", "Performance Rating"].includes(stat.title) &&
+                                    ["Assessment Completion Rate", "Performance Rating"].includes(stat.title) &&
                                         !Number.isInteger(parseFloat(stat.value)) // Check if the parsed value is not an integer
                                         ? 1
                                         : 0
                                 }
                             />
-                            {["Test Completion Rate"].includes(stat.title) && "%"}
+                            {["Assessment Completion Rate"].includes(stat.title) && "%"}
                         </p>
 
 
