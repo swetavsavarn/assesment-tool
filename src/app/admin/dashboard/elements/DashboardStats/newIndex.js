@@ -7,7 +7,9 @@ import { useSelector } from "react-redux";
 import RatingChart from "../RatingChart";
 import CountUp from "react-countup";
 import ReactStars from "react-rating-stars-component";
-import { Card, CardContent, Typography, Box } from "@mui/material";
+import DashboardCard from "./card";
+import DashboardPiechart from "./piechart";
+
 
 const NewDashBoard = () => {
     const dashboardData = useSelector(dashboardDataSelector);
@@ -57,24 +59,13 @@ const NewDashBoard = () => {
             description: "Questions available for tests",
             link: "/admin/manage-skills",
         },
-        {
-            title: "Assessments Sent",
-            value: (dashboardData.testCounts?.sent || 0),
-            description: "Total assessments sent to candidates",
-            link: "/admin/manage-tests",
-        },
-        {
-            title: "Completed Assessments",
-            value: dashboardData.testCounts?.finished || 0,
-            description: "Assessments completed",
-            link: "/admin/manage-tests",
-        },
-        {
-            title: "Open Assessments",
-            value: (dashboardData.testCounts?.onGoing || 0) + (dashboardData.testCounts?.pending || 0),
-            description: "Tests currently being taken",
-            link: "/admin/manage-tests",
-        },
+    ];
+    const piechartData = [
+        { name: "Assessments Sent", value: 38, color: "#41C1D0", link: "/admin/manage-tests" },
+        { name: "Completed Assessments", value: 30, color: "#4F79C7", link: "/admin/manage-tests", },
+        { name: "Open Assessments", value: 32, color: "#3A3E44", link: "/admin/manage-tests" },
+    ]
+    const assessmentRating=[
         {
             title: "Assessment Feedback",
             value: dashboardData.feedBackData?.totalRecords || 0,
@@ -88,157 +79,50 @@ const NewDashBoard = () => {
             link: "/admin/feedback",
             color: getRatingColor(dashboardData.feedBackData?.avgRating)
         },
-
-    ];
-
+    ]
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-6 bg-newCodes-background">
-            <RatingChart />
-            {stats.map((stat, index) => {
-                if (stat?.title == "Performance Rating") {
-                    return (
-                        <div
-                            key={index}
-                            className="bg-newCodes-foreground rounded-lg shadow-lg p-5 flex flex-col justify-between gap-y-0 max-h-[250px]"
-                        >
-                            <h2 className="text-white text-center text-[18px] font-medium leading-[27px]">
-                                {stat.title}
-                            </h2>
-                            <p
-                                className={`font-bold mt-0 text-center ${stat.color || "text-gray-200"
-                                    }`}
-                            >
-                                <span className="text-[55px]">
-                                    <CountUp
-                                        start={0}
-                                        end={parseFloat(stat.value)} // Convert string to a number
-                                        duration={2.5}
-                                        separator=","
-                                        decimals={
-                                            ["Assessment Completion Rate", "Performance Rating"].includes(stat.title) &&
-                                                !Number.isInteger(parseFloat(stat.value)) // Check if the parsed value is not an integer
-                                                ? 1
-                                                : 0
-                                        }
-                                    />
-                                </span>
-                                {/* <div className="justify-center"> */}
-                                <ReactStars classNames="w-full flex justify-center" value={stat?.value} readonly={true} isHalf={true} size={30} edit={false} activeColor={"#FFB800"} />
-                                {/* </div> */}
-                                {["Assessment Completion Rate"].includes(stat.title) && "%"}
-                            </p>
+        <div className="grid grid-cols-1 gap-6 bg-newCodes-background">
+    {/* First row: Stats */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+        {stats.map((stat, index) => {
+            const isClickable = stat?.value > 0;
+            return (
+                <div key={index} className={isClickable ? "cursor-pointer" : "cursor-default"}>
+                    {isClickable ? (
+                        <Link href={stat.link}>
+                            <DashboardCard item={stat} />
+                        </Link>
+                    ) : (
+                        <DashboardCard item={stat} />
+                    )}
+                </div>
+            );
+        })}
+    </div>
 
+    {/* Second row: Piechart */}
+    <div className="flex justify-center">
+        <DashboardPiechart data={piechartData} />
+    </div>
 
-                            {stat?.value > 0 ? <Link
-                                className="text-[#93C5FD] underline font-medium text-[14px] text-lg  text-center"
-                                href={stat.link}
-                            >
-                                {stat.description}
-                            </Link> : <p
-                                className="cursor-default text-white font-medium text-[14px] text-lg text-center"
-                            >
-                                {stat.description}
-                            </p>}
-                        </div>
-                    )
-                }
-
-                return (
-                    <>
-                        {/* <div
-                        key={index}
-                        className="bg-newCodes-foreground rounded-lg shadow-lg p-5 flex flex-col justify-between gap-y-3 max-h-[250px]"
-                    >
-                        <h2 className="text-white text-center text-[18px] font-medium leading-[27px]">
-                            {stat.title}
-                        </h2>
-                        <p
-                            className={`text-[55px] font-bold mt-4 text-center ${stat.color || "text-gray-200"
-                                }`}
-                        >
-                            <CountUp
-                                start={0}
-                                end={parseFloat(stat.value)} // Convert string to a number
-                                duration={2.5}
-                                separator=","
-                                decimals={
-                                    ["Assessment Completion Rate", "Performance Rating"].includes(stat.title) &&
-                                        !Number.isInteger(parseFloat(stat.value)) // Check if the parsed value is not an integer
-                                        ? 1
-                                        : 0
-                                }
-                            />
-                            {["Assessment Completion Rate"].includes(stat.title) && "%"}
-                        </p>
-
-
-                        {stat?.value > 0 ? <Link
-                            className="text-[#93C5FD] hover:text-[#60A5FA] underline font-medium text-[14px] text-lg mt-2 text-center whitespace-nowrap"
-                            href={stat.link}
-                        >
-                            {stat.description}
-                        </Link> : <p
-                            className="whitespace-nowrap cursor-default text-white font-medium text-[14px] text-lg mt-2 text-center"
-                        >
-                            {stat.description}
-                        </p>}
-                    </div> */}
-                        <Card
-                            sx={{
-                                backgroundColor: "#22282E",
-                                color: "white",
-                                borderRadius: 2,
-                                padding: 2,
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-between",
-                                minWidth: 250,
-                            }}
-                        >
-                            <Box>
-                                <Typography variant="h4" fontWeight="bold">
-                                    <h2 className="text-white text-center text-[18px] font-medium leading-[27px]">
-                                        {stat.title}
-                                    </h2>
-                                </Typography>
-                                <Typography variant="body2" color="gray">
-                                    <p
-                                        className={`text-[55px] font-bold mt-4 text-center ${stat.color || "text-gray-200"
-                                            }`}
-                                    >
-                                        <CountUp
-                                            start={0}
-                                            end={parseFloat(stat.value)} // Convert string to a number
-                                            duration={2.5}
-                                            separator=","
-                                            decimals={
-                                                ["Assessment Completion Rate", "Performance Rating"].includes(stat.title) &&
-                                                    !Number.isInteger(parseFloat(stat.value)) // Check if the parsed value is not an integer
-                                                    ? 1
-                                                    : 0
-                                            }
-                                        />
-                                        {["Assessment Completion Rate"].includes(stat.title) && "%"}
-                                    </p>
-                                </Typography>
-                                <Typography variant="body2" color="lightgreen">
-                                    {stat?.value > 0 ? <Link
-                                        className="text-[#93C5FD] hover:text-[#60A5FA] underline font-medium text-[14px] text-lg mt-2 text-center whitespace-nowrap"
-                                        href={stat.link}
-                                    >
-                                        {stat.description}
-                                    </Link> : <p
-                                        className="whitespace-nowrap cursor-default text-white font-medium text-[14px] text-lg mt-2 text-center"
-                                    >
-                                        {stat.description}
-                                    </p>}
-                                </Typography>
-                            </Box>
-                        </Card>
-                    </>
-                )
-            })}
-        </div>
+    {/* Third row: Assessment Rating */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+        {assessmentRating.map((stat, index) => {
+            const isClickable = stat?.value > 0;
+            return (
+                <div key={index} className={isClickable ? "cursor-pointer" : "cursor-default"}>
+                    {isClickable ? (
+                        <Link href={stat.link}>
+                            <DashboardCard item={stat} />
+                        </Link>
+                    ) : (
+                        <DashboardCard item={stat} />
+                    )}
+                </div>
+            );
+        })}
+    </div>
+</div>
     );
 };
 
