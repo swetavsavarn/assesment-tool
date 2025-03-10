@@ -24,7 +24,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                     <li key={val?.label} className="w-full flex justify-center">
                         <Link
                             href={val.route}
-                            className={`group w-full justify-center flex-col nav-link flex items-center px-3 py-2 gap-y-[1px] transition duration-[0.4s] hover:bg-[#3B82F6] ${isActive(val.routeName) ? 'bg-primary-500 ' : ''
+                            className={`group w-full justify-center text-newCodes-sideLinks flex-col nav-link flex items-center px-3 py-2 gap-y-[1px] transition duration-[0.4s] hover:text-newCodes-sideLinksHover ${isActive(val.routeName) ? 'text-newCodes-sideLinksActive' : ''
                                 }`}
                         >
                             {val.Icon}
@@ -35,7 +35,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                                     } group-hover:opacity-100 group-hover:visible`}
                             > */}
                             <span
-                                className={`text-[12px] font-medium ml-1 text-white transition-all duration-300 ease-in-out ${isActive(val.routeName)}`}
+                                className={`text-[12px] font-medium ml-1 transition-all duration-300 ease-in-out ${isActive(val.routeName)}`}
                             >
                                 {val.label}
                             </span>

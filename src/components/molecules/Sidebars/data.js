@@ -33,8 +33,8 @@ export const sideBarData = [
         route: "/admin/manage-tests",
         // Icon: <FeedIcon />,
         Icon: <QuizIcon />,
-        label: "Tests",
-        fullLabel: "Tests",
+        label: "Assesment",
+        fullLabel: "Assesment",
         isDisabled: true,
         routeName: ["/admin/manage-tests"]
     },

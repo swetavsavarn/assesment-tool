@@ -27,11 +27,11 @@ const SidebarFull = ({ isSidebarOpen, toggleSidebar }) => {
                     <li key={val?.label} className='px-3'>
                         <Link
                             href={val.route}
-                            className={`nav-link flex items-center  justify-start gap-3 rounded-lg px-3 py-3 transition duration-[0.4s] hover:bg-[#3B82F6] ${isActive(val.routeName) ? "bg-primary-500" : ""}`}
+                            className={`nav-link flex items-center text-newCodes-sideLinks justify-start gap-3 rounded-lg px-3 py-3 transition duration-[0.4s] hover:text-newCodes-sideLinksHover ${isActive(val.routeName) ? "text-newCodes-sideLinksActive" : ""}`}
                         >
                             {val.Icon}
                             <span
-                                className={`text-14 font-medium leading-24 ml-1 text-white`}
+                                className={`text-14 font-medium leading-24 ml-1 `}
                             >
                                 {val?.fullLabel || val.label}
                             </span>

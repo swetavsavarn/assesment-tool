@@ -10,6 +10,13 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        newCodes:{
+          sideLinks:'rgba(172, 182, 191, 0.5)',
+          sideLinksHover:'#fff',
+          sideLinksActive:'#fff',
+          background:"#1d2126",
+          foreground:"#272c33",
+        },
         primary: {
           100: "#1E293B",
           200: "#1e293b",
