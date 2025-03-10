@@ -144,7 +144,7 @@ const ManageTemplates = () => {
 
 
     return (
-        <PanelLayout pageTitle="Manage Templates" breadcrumbsData={breadcrumbsData}>
+        <PanelLayout pageTitle="Test Templates" breadcrumbsData={breadcrumbsData}>
             <>
                 <TemplatesDatatable
                     handleOpenDialogDel={openDeleteDialogHandler}

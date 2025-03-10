@@ -118,7 +118,7 @@ const ManageTest = () => {
 
     // Rendering
     return (
-        <PanelLayout pageTitle="Manage Tests" breadcrumbsData={breadcrumbsData}>
+        <PanelLayout pageTitle="Assesments" breadcrumbsData={breadcrumbsData}>
             {testId && <BackButton />}
             {testId ? (
                 <ViewTest />

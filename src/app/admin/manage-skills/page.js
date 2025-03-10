@@ -145,7 +145,7 @@ const ManageSkills = () => {
 
 
     return (
-        <PanelLayout pageTitle="Manage Skills">
+        <PanelLayout pageTitle="Skills">
 
             {/* Add Skill Button */}
             <div className="flex justify-end mr-4">
