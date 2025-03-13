@@ -155,7 +155,7 @@ const ManageSkills = () => {
                 </Button>
             </div>
 
-            <div className="mt-4 bg-primary-200 p-6">
+            <div className="mt-4 bg-newCodes-background p-6">
 
                 <div
                     className={`transition-all duration-300 flex justify-end ease-in-out ${checkboxSelection ? 'opacity-0 h-0 visibility-hidden' : 'opacity-100 h-auto visibility-visible'

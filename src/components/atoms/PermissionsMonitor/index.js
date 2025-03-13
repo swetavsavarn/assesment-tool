@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { SOCKET_EVENTS } from '@/lib/socket/events';
 import { permissionsSelector } from '@/store/features/permissions/selectors';
-import { socketSelector } from '@/store/features/socket/selectors';
+import { isConnectionLostSelector, socketSelector } from '@/store/features/socket/selectors';
 import { fireEventWithAck, isDebugMode } from '@/utils';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
@@ -11,6 +11,9 @@ import BehaviourTracking from '../BehaviourTracking';
 const PermissionsMonitor = () => {
 
     const socket = useSelector(socketSelector)
+    const isConnectionLost = useSelector(isConnectionLostSelector)
+
+
 
 
     const { screenStream, videoStream, startRecording } = useSelector(permissionsSelector);
@@ -170,7 +173,7 @@ const PermissionsMonitor = () => {
         <>
             {/* {trackingStream && <BehaviourTracking videoStreamTracking={trackingStream} />} */}
             {/* Check if trackingStream is defined before rendering BehaviourTracking */}
-            {videoStream ? (
+            {videoStream && !isConnectionLost ? (
                 <BehaviourTracking videoStreamTracking={videoStream} />
             ) : <></>}
         </>

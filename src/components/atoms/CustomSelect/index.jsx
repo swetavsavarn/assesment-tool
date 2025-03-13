@@ -18,6 +18,8 @@ const CustomSelect = ({
   touched,
   options = [],
   disabled,
+  autoFocus,
+  size = "medium",
 }) => {
   return (
     <FormControl
@@ -36,6 +38,8 @@ const CustomSelect = ({
         fullWidth
         error={touched && Boolean(error)}
         disabled={disabled}
+        size={size}
+        autoFocus={autoFocus}
         MenuProps={{
           PaperProps: {},
           disableScrollLock: true, // Prevents scroll lock when dropdown is open

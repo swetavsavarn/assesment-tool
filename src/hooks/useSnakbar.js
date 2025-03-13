@@ -11,7 +11,7 @@ const useSnackbar = () => {
     };
 
     const showError = (message) => {
-        dispatch(showSnackbar({ message, type: "error" }));
+        dispatch(showSnackbar({ message: message || "Something went wrong.", type: "error" }));
     };
 
     const showWarning = (message) => {

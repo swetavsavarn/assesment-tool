@@ -203,7 +203,10 @@ const testSlice = createSlice({
 
       const index = action.payload.idx;
 
+
       if (state.currentSection == TEST_SECTIONS.MCQ) {
+
+        console.log(state.testInfo?.question, " state.testInfo?.question>>>");
 
         if (index >= 0 && index < state.testInfo?.question.length) {
           if (index > state.currentIndex) {

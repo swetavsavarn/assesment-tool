@@ -18,39 +18,32 @@ const AddEditSkillDialog = ({
   handleSaveSkill,
   editIndex,
 }) => {
-  // Formik initialization with validation schema
-
   const editItem = useSelector(editItemSelector);
 
   const formik = useFormik({
     initialValues: {
-      skillName: editItem?.title || editItem?.skillName || "", // Initial value for the skill name
+      skillName: editItem?.title || editItem?.skillName || "",
     },
     validationSchema: Yup.object({
       skillName: Yup.string()
-        .required("Skill name is required") // Skill name is required
-        .min(3, "Skill name must be at least 3 characters") // Minimum length is 3 characters
-        .max(50, "Skill name can't be longer than 50 characters"), // Maximum length is 50 characters
+        .required("Skill name is required")
+        .min(3, "Skill name must be at least 3 characters")
+        .max(50, "Skill name can't be longer than 50 characters"),
     }),
     onSubmit: (values) => {
-
-      // Call the save function with form values
       handleSaveSkill(values);
     },
   });
 
   useEffect(() => {
-    formik.setFieldValue("skillName", editItem?.name || editItem?.skillName || "")
-
-
-  }, [editItem, openDialog])
+    formik.setFieldValue("skillName", editItem?.name || editItem?.skillName || "");
+  }, [editItem, openDialog]);
 
   useEffect(() => {
     if (!openDialog) {
-      formik?.resetForm()
+      formik?.resetForm();
     }
-
-  }, [openDialog])
+  }, [openDialog]);
 
   return (
     <Dialog
@@ -58,17 +51,18 @@ const AddEditSkillDialog = ({
       onClose={handleCloseDialog}
       sx={{
         "& .MuiDialog-paper": {
-          backgroundColor: "#1E293B", // Custom background color
-          width: 400, // Set a fixed width for the dialog
+          backgroundColor: "#272C33",
+          borderRadius: "16px",
+          width: 450,
+          padding: "20px",
         },
       }}
     >
       <form onSubmit={formik.handleSubmit}>
-        <DialogTitle>
+        <DialogTitle className="text-white text-center font-semibold text-xl">
           {editItem ? "Edit Skill" : "Add New Skill"}
         </DialogTitle>
         <DialogContent sx={{ paddingTop: "10px !important" }}>
-          {/* Skill Name Input */}
           <TextField
             fullWidth
             label="Skill Name"
@@ -78,28 +72,45 @@ const AddEditSkillDialog = ({
             onBlur={formik.handleBlur}
             error={formik.touched.skillName && Boolean(formik.errors.skillName)}
             helperText={formik.touched.skillName && formik.errors.skillName}
-            sx={{
-              marginBottom: 2, // Add space between input and button
-              "& .MuiInputBase-root": {
-                width: "100%", // Ensure the input is 100% width
-                borderRadius: "25px",
+            InputProps={{
+              style: {
+                backgroundColor: "#1E293B",
+                color: "white",
+                borderRadius: "12px",
+                padding: "10px",
               },
             }}
+            sx={{ marginBottom: 3 }}
           />
         </DialogContent>
-        <DialogActions>
+        <DialogActions sx={{ justifyContent: "center", gap: "10px" }}>
           <Button
             onClick={handleCloseDialog}
-            variant="secondary"
-            size="small"
+            // sx={{
+            //   backgroundColor: "#374151",
+            //   color: "white",
+            //   padding: "10px 20px",
+            //   borderRadius: "8px",
+            //   "&:hover": { backgroundColor: "#475569" },
+            // }}
+            variant="primary"
+            size="medium"
+            padding="10px 20px"
           >
             Cancel
           </Button>
           <Button
             type="submit"
-            variant="primary "
-            // onClick={formik.handleSubmit} // Trigger form submit
-            size="small"
+            // sx={{
+            //   backgroundColor: "#8C52FF",
+            //   color: "white",
+            //   padding: "10px 20px",
+            //   borderRadius: "8px",
+            //   "&:hover": { backgroundColor: "#7A44E5" },
+            // }}
+            variant="primary"
+            size="medium"
+            padding="10px 20px"
           >
             {!editItem ? "Save" : "Update"}
           </Button>

@@ -1,12 +1,17 @@
 'use client';
 
+import { isConnectionLostSelector } from '@/store/features/socket/selectors';
 import { isChromeDesktop } from '@/utils';
 import React, { useEffect, useState } from 'react';
-
+import { useSelector } from 'react-redux';
+import { ConnectionLost } from './v1/elements/ConnectionLost';
 
 
 const UserLayout = ({ children }) => {
+
     const [isUnsupported, setIsUnsupported] = useState(false);
+    const isConnectionLost = useSelector(isConnectionLostSelector)
+
 
     useEffect(() => {
         if (!isChromeDesktop()) {
@@ -32,7 +37,12 @@ const UserLayout = ({ children }) => {
         );
     }
 
-    return <>{children}</>;
+
+    return <>
+        {isConnectionLost && <ConnectionLost />}
+        {children}
+
+    </>;
 };
 
 export default UserLayout;

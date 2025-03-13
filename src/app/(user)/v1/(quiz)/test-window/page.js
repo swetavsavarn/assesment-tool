@@ -33,8 +33,9 @@ function QuizLayout() {
 
   useEffect(() => {
     const handleNavigationWarning = () => {
-      router.push("/v1/test-window/navigation-warning");
       if (socket) {
+        router.push("/v1/test-window/navigation-warning");
+
         fireEventWithAck(socket, {
           eventName: SOCKET_EVENTS.ADD_WARNING,
           callback: (response) => {
@@ -76,10 +77,6 @@ function QuizLayout() {
 
           {/* Left Navigation Button */}
           <div className="flex flex-1 relative">
-            {/* <div className="text-white absolute flex justify-center items-center h-8  w-36 left-1/2 transform -translate-x-1/2 top-[0px] z-20 border border-primary-500 border-t-0">
-              Attempted {getAttemptedQuestionsCount(testInfo?.question)}/
-              {testInfo?.question?.length}
-            </div> */}
 
             <div className="flex flex-1 mt-2">
               <PanelGroup direction="horizontal" className="">

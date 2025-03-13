@@ -2,9 +2,8 @@
 import PanelLayout from '@/components/layouts/PanelLayout'
 import React, { useEffect } from 'react'
 import DashboardStats from './elements/DashboardStats'
-import NewDashBoard from './elements/DashboardStats/newIndex'
 import { useGetDashboardDataMutation } from '@/services/api-service/admin/dashboard';
-
+import Charts from './elements/Charts';
 
 const statsData = [
     {
@@ -61,9 +60,8 @@ const Dashboard = () => {
 
     return (
         <PanelLayout pageTitle={"Dashboard"} breadcrumbsData={[]}>
-
-            <NewDashBoard stats={statsData} />
-
+            <DashboardStats stats={statsData} />
+            <Charts />
         </PanelLayout >
     )
 }

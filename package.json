@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next build && next start",
     "start:test": "next start -p 9000",
     "start:accept": "next start -p 9001",
     "start:prod": "next start -p 9002",

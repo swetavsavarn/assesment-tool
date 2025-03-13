@@ -19,93 +19,43 @@ const SkillCard = ({ id, title, levels, onEdit, onDelete, selected, showOptions 
 
     return (
         <div
-            className={`bg-primary-300 text-white min-h-[100px] rounded-md p-4 transition-transform duration-200 hover:shadow-lg border border-primary-400 ${checkboxSelection ? "hover:scale-105 cursor-pointer" : ""}`}
+            className={`bg-newCodes-foreground text-white rounded-2xl shadow-lg p-5 flex flex-col justify-between gap-y-3 max-h-[250px]
+            transition-transform duration-200 transform hover:scale-105 hover:shadow-2xl cursor-pointer`}
             onClick={() => onClick(id)}
-            style={{ height: '250px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
         >
-            <div className="flex mb-4 justify-between items-center">
-                <h2 className="text-blue-400 text-xl font-bold text-center break-words flex-1 flex justify-center items-center ">{title}</h2>
-                {!checkboxSelection && <IconButton
-                    aria-controls="skill-card-menu"
-                    aria-haspopup="true"
-                    onClick={handleMenuOpen}
-                    size="small"
-                >
-                    <MoreVertIcon style={{ color: "white" }} />
-                </IconButton>}
-                {checkboxSelection && <FormControlLabel
-                    control={
-                        <Checkbox
-                            // name={getSkillName(skill.name)}
-                            checked={selected}
-                            // onChange={handleCheckboxChange}
-                            sx={{ color: 'white' }}
-                        />
-                    }
-                // label={getSkillName(skill)}
-                />}
-                {/* Menu */}
-                <Menu
-                    id="skill-card-menu"
-                    anchorEl={anchorEl}
-                    open={Boolean(anchorEl)}
-                    onClose={handleMenuClose}
-                    PaperProps={{
-                        sx: {
-                            backgroundColor: "#0E1626", // Dark navy background
-                            color: "white",
-                            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.25)",
-                            borderRadius: "8px",
-                            padding: "8px 0",
-                            width: "130px"
-                        },
-                    }}
-                >
-                    <MenuItem
-                        onClick={() => {
-                            onEdit(id);
-                            handleMenuClose();
-                        }}
-                        sx={{
-                            color: "white",
-                            fontSize: "1rem",
-                            // padding: "10px 16px",
-                            '&:hover': {
-                                color: "#8C52FF", // Purple hover effect for Edit
-                            },
-                        }}
+            <div className="flex justify-between items-center">
+                <h2 className="text-white text-center text-[18px] font-medium flex-1 break-words">
+                    {title}
+                </h2>
+                {!checkboxSelection && (
+                    <IconButton
+                        aria-controls="skill-card-menu"
+                        aria-haspopup="true"
+                        onClick={handleMenuOpen}
+                        size="small"
                     >
-                        <EditIcon fontSize="small" style={{ marginRight: 8 }} />
-                        Edit
-                    </MenuItem>
-                    <MenuItem
-                        onClick={() => {
-                            onDelete(id);
-                            handleMenuClose();
-                        }}
-                        sx={{
-                            color: "#EF4444 !important", // Red color for Delete
-                            fontSize: "1rem",
-                            // padding: "10px 16px",
-                            '&:hover': {
-                                backgroundColor: "rgba(255, 76, 76, 0.1)", // Subtle red background on hover
-                            },
-                        }}
-                    >
-                        <DeleteIcon fontSize="small" style={{ marginRight: 8 }} />
-                        Delete
-                    </MenuItem>
-                </Menu>
+                        <MoreVertIcon style={{ color: "white" }} />
+                    </IconButton>
+                )}
+                {checkboxSelection && (
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={selected}
+                                sx={{ color: 'white' }}
+                            />
+                        }
+                    />
+                )}
             </div>
 
-            {/* Loop through levels */}
-            <div className="mb-2 flex flex-col gap-y-2">
+            <div className="flex flex-col gap-y-2">
                 {levels?.map((level, index) => (
                     <Link
                         href={checkboxSelection ? "" : `/admin/manage-questions?skill=${id}&experience=${level?.levelId}`}
                         key={index}
-                        className={`${checkboxSelection ? "cursor-default" : "hover:text-blue-400 hover:scale-105 "} text-white text-sm py-2 text-center
-                       rounded-md duration-200 cursor-pointer bg-primary-200 border border-primary-400 `}
+                        className={`text-white text-sm py-2 text-center rounded-md bg-primary-200 border border-primary-400 
+                        transition-transform duration-200 ${checkboxSelection ? "cursor-default" : "hover:text-blue-400 hover:scale-105"}`}
                         onClick={(e) => {
                             if (checkboxSelection) {
                                 e.preventDefault(); // Prevent navigation
@@ -116,8 +66,60 @@ const SkillCard = ({ id, title, levels, onEdit, onDelete, selected, showOptions 
                     </Link>
                 ))}
             </div>
+
+            {/* Menu */}
+            <Menu
+                id="skill-card-menu"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+                PaperProps={{
+                    sx: {
+                        backgroundColor: "#0E1626",
+                        color: "white",
+                        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.25)",
+                        borderRadius: "8px",
+                        padding: "8px 0",
+                        width: "130px"
+                    },
+                }}
+            >
+                <MenuItem
+                    onClick={() => {
+                        onEdit(id);
+                        handleMenuClose();
+                    }}
+                    sx={{
+                        color: "white",
+                        fontSize: "1rem",
+                        '&:hover': {
+                            color: "#8C52FF",
+                        },
+                    }}
+                >
+                    <EditIcon fontSize="small" style={{ marginRight: 8 }} />
+                    Edit
+                </MenuItem>
+                <MenuItem
+                    onClick={() => {
+                        onDelete(id);
+                        handleMenuClose();
+                    }}
+                    sx={{
+                        color: "#EF4444 !important",
+                        fontSize: "1rem",
+                        '&:hover': {
+                            backgroundColor: "rgba(255, 76, 76, 0.1)",
+                        },
+                    }}
+                >
+                    <DeleteIcon fontSize="small" style={{ marginRight: 8 }} />
+                    Delete
+                </MenuItem>
+            </Menu>
         </div>
     );
 };
+
 
 export default SkillCard;

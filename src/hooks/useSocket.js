@@ -1,8 +1,8 @@
 "use client"
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { userAuthTokenSelector } from '@/store/features/userAuth/selectors';
-import { setSocket } from '@/store/features/socket';
+import { setIsConnectionLost, setSocket } from '@/store/features/socket';
 import { socketSelector } from '@/store/features/socket/selectors';
 import { SOCKET_EVENTS } from '@/lib/socket/events';
 import { testIdSelector, testSelector } from '@/store/features/test/selectors';
@@ -11,6 +11,7 @@ import { getSocket } from '@/lib/socket/socket';
 import { exitFullscreen, getTestIdFromSession, refreshPage, stopStreams } from '@/utils';
 import { setScreenStream, setStartRecording, setVideoStream } from '@/store/features/permissions';
 import { permissionsSelector } from '@/store/features/permissions/selectors';
+import useSnackbar from "./useSnakbar";
 
 
 const useSocket = () => {
@@ -21,36 +22,57 @@ const useSocket = () => {
     const testId = useSelector(testIdSelector);
     const test = useSelector(testSelector);
 
+    const { showSuccess, showError } = useSnackbar()
+
     const { screenStream, videoStream } = useSelector(permissionsSelector)
-
-
 
     const router = useRouter()
 
-    useEffect(() => {
+    const reconnectTimeout = useRef(null);
 
+    useEffect(() => {
         if (authToken) {
             const socket = getSocket(authToken);
+            dispatch(setSocket(socket));
 
-            dispatch(setSocket(socket))
             socket.on("connect", () => {
                 console.info("Socket connected");
+                dispatch(setIsConnectionLost(false))
+
+                // ✅ Clear timeout when connected successfully
+                if (reconnectTimeout.current) {
+                    clearTimeout(reconnectTimeout.current);
+                    reconnectTimeout.current = null;
+                }
             });
 
-            socket.on("disconnect", () => {
-                refreshPage(getTestIdFromSession())
+            socket.on("disconnect", (reason) => {
+                console.warn(`Socket disconnected: ${reason}`);
+
+                if (reason === "transport close") {
+                    dispatch(setIsConnectionLost(true))
+                    console.warn("Network issue detected. Attempting to reconnect...");
+
+                    // ✅ Start a 10-second timer to refresh if not reconnected
+                    reconnectTimeout.current = setTimeout(() => {
+                        console.warn("Reconnection failed. Refreshing page...");
+                        refreshPage(getTestIdFromSession());
+                        showError("No internet connection. Please check your network and try again.");
+                    }, 20000);
+                }
             });
         }
 
         return () => {
-            if (socket) {
-                socket?.off("connect");
-                socket?.off("disconnect");
-                socket?.off("event_response");
-            }
+            if (reconnectTimeout.current) {
+                clearTimeout(reconnectTimeout.current); // ✅ Clear timeout on unmount
 
+            }
+            socket?.off("connect");
+            socket?.off("disconnect");
+            socket?.off("event_response");
         };
-    }, [authToken]);
+    }, [authToken, dispatch]);
 
     useEffect(() => {
 
